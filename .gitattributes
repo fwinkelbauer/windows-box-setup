@@ -1,0 +1,2 @@
+# tell every file to use lf on every platform
+* text=auto eol=lf
