@@ -2,7 +2,7 @@ $ErrorActionPreference = 'Stop'
 
 $artifactsDir = '.\artifacts'
 
-function Clean-Artifacts {
+function Clear-Artifacts {
     if (Test-Path $artifactsDir) {
         Get-ChildItem -Path $artifactsDir -Recurse | Remove-Item -Force -Recurse
     } else {
@@ -25,12 +25,12 @@ function Copy-InstallScripts {
     Copy-Item -Path '.\scripts\*' -Destination $artifactsDir
 }
 
-function Zip-Artifacts {
+function Compress-Artifacts {
     Compress-Archive -Path "$artifactsDir\*" -DestinationPath "$artifactsDir\box.zip"
 }
 
-Clean-Artifacts
+Clear-Artifacts
 Copy-Boxstarter
 Build-Packages
 Copy-InstallScripts
-Zip-Artifacts
+Compress-Artifacts
