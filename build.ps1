@@ -25,6 +25,26 @@ function Copy-InstallScripts {
     Copy-Item -Path '.\scripts\*' -Destination $artifactsDir
 }
 
+
+function Build-GenericInstallScript {
+    $validateSet = @()
+    foreach ($nuspec in Get-ChildItem -Path '.\nuspec\**\*.nuspec') {
+        [xml]$nsdat = Get-Content $nuspec
+        $validateSet += $nsdat.package.metadata.id
+    }
+@"
+param(
+    [ValidateSet($('"{0}"' -f ($validateSet -join '","')))]
+    [string]`$PackageId
+)
+`$ErrorActionPreference = 'Stop'
+
+`$boxstarterModule = Join-Path `$PSScriptRoot 'Boxstarter\Boxstarter.Chocolatey'
+Import-Module `$boxstarterModule
+Invoke-ChocolateyBoxstarter -BootstrapPackage `$PackageId
+"@ | Out-File (Join-Path $artifactsDir "install.ps1") -Encoding utf8
+}
+
 function Compress-Artifacts {
     Compress-Archive -Path "$artifactsDir\*" -DestinationPath "$artifactsDir\box.zip"
 }
@@ -33,4 +53,5 @@ Clear-Artifacts
 Copy-Boxstarter
 Build-Packages
 Copy-InstallScripts
+Build-GenericInstallScript
 Compress-Artifacts
