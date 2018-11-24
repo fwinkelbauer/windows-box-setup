@@ -1,3 +1,4 @@
 *.nuspec     text
 *.md         text
 *.ps1        text
+*.bat        text
