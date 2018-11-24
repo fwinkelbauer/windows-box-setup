@@ -11,3 +11,4 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 Update-SessionEnvironment
 
 code --install-extension cake-build.cake-vscode
+code --install-extension gep13.chocolatey-vscode
