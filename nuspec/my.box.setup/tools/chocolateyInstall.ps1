@@ -10,5 +10,7 @@ choco install vscode -y --no-progress
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 Update-SessionEnvironment
 
+choco install my.vs2017.cake -y --no-progress
+
 code --install-extension cake-build.cake-vscode
 code --install-extension gep13.chocolatey-vscode
