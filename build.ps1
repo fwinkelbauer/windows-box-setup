@@ -25,7 +25,6 @@ function Copy-InstallScripts {
     Copy-Item -Path '.\scripts\*' -Destination $artifactsDir
 }
 
-
 function Build-GenericInstallScript {
     $validateSet = @()
     foreach ($nuspec in Get-ChildItem -Path '.\nuspec\**\*.nuspec') {
