@@ -7,7 +7,6 @@ choco install visualstudio2017-workload-netcoretools -y --no-progress
 choco install vscode -y --no-progress
 
 # Refresh environment to use tools such as "code" or "git"
-Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 Update-SessionEnvironment
 
 choco install my.vs2017.cake -y --no-progress

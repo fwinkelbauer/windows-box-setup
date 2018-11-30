@@ -17,14 +17,14 @@ The `artifacts\box.zip` file can be built by running `build.ps1`.
 
 ## Bootstrap a Computer
 
-The packages `my.box.setup` and `my.box.setup.explorer` contain example
-instructions to bootstrap a .NET developer environment. `my.vs2017.cake`
-highlights how to install a Visual Studio extension using Chocolatey.
+The packages `my.box.csharp` and `my.box.explorer` contain example instructions
+to bootstrap a .NET developer environment. `my.vs2017.cake` highlights how to
+install a Visual Studio extension using Chocolatey.
 
 - Copy `box.zip` to a network share or to your target computer.
 - Extract the archive and run either `install-mybox.ps1` or `install-mybox.bat`.
   This command will start a local copy of Boxstarter which will install the
-  `my.box.setup` package.
+  `my.box.csharp` package.
 
 ## License
 

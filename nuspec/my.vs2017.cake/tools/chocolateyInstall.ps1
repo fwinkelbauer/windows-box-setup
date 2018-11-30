@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop';
+$ErrorActionPreference = 'Stop'
 
 $parameters = @{
     PackageName   = $env:ChocolateyPackageName

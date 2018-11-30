@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>my.box.setup</id>
+    <id>my.box.csharp</id>
     <version>1.0.0</version>
     <authors>Florian Winkelbauer</authors>
     <owners>Florian Winkelbauer</owners>
     <description>Bootstraps my .NET development Windows machine</description>
     <tags>Boxstarter</tags>
     <dependencies>
-      <dependency id="my.box.setup.explorer" />
+      <dependency id="my.box.explorer" />
     </dependencies>
   </metadata>
 </package>
