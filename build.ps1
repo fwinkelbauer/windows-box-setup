@@ -2,6 +2,16 @@ $ErrorActionPreference = 'Stop'
 
 $artifactsDir = '.\artifacts'
 
+function Invoke-Linter {
+    $files = Get-ChildItem -Path '.\nuspec', '.\scripts' -Include '*.ps1', '*.psm1' -Recurse
+    $issues = $files | ForEach-Object { Invoke-ScriptAnalyzer -Path $_.FullName }
+    $issues
+
+    if ($issues) {
+        Write-Error 'Please fix the linter issues'
+    }
+}
+
 function Clear-Artifacts {
     if (Test-Path $artifactsDir) {
         Get-ChildItem -Path $artifactsDir -Recurse | Remove-Item -Force -Recurse
@@ -29,6 +39,7 @@ function Compress-Artifacts {
     Compress-Archive -Path "$artifactsDir\*" -DestinationPath "$artifactsDir\box.zip"
 }
 
+Invoke-Linter
 Clear-Artifacts
 Copy-Boxstarter
 Build-Packages

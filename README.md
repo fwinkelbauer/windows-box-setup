@@ -7,10 +7,11 @@ but can be adapted to any set of custom feeds.
 
 ## Development
 
-Install [Chocolatey][choco] and [Boxstarter][box]:
+Install [Chocolatey][choco], [Boxstarter][box] and [PSScriptAnalyzer][analyzer]:
 
 ```powershell
 . { iwr -useb https://boxstarter.org/bootstrapper.ps1 } | iex; get-boxstarter -Force
+Install-Module -Name PSScriptAnalyzer -Force
 ```
 
 The `artifacts\box.zip` file can be built by running `build.ps1`.
@@ -33,4 +34,5 @@ license can be found [here][box_license].
 
 [choco]: https://chocolatey.org/
 [box]: https://boxstarter.org/
+[analyzer]: https://github.com/PowerShell/PSScriptAnalyzer
 [box_license]: https://github.com/chocolatey/boxstarter/blob/master/LICENSE.txt
