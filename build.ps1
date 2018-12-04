@@ -4,11 +4,21 @@ $artifactsDir = '.\artifacts'
 
 function Invoke-Linter {
     $files = Get-ChildItem -Path '.\nuspec', '.\scripts' -Include '*.ps1', '*.psm1' -Recurse
-    $issues = $files | ForEach-Object { Invoke-ScriptAnalyzer -Path $_.FullName }
-    $issues
+    $foundIssues = $false
 
-    if ($issues) {
-        Write-Error 'Please fix the linter issues'
+    foreach ($file in $files) {
+        $name = $file.FullName
+        $issues = Invoke-ScriptAnalyzer -Path $name
+
+        if ($issues) {
+            Write-Output "Found issues in file '$name'"
+            $issues
+            $foundIssues = $true
+        }
+    }
+
+    if ($foundIssues) {
+        Write-Error 'Please fix the linter issues above'
     }
 }
 

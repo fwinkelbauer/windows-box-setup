@@ -11,6 +11,7 @@ Install [Chocolatey][choco], [Boxstarter][box] and [PSScriptAnalyzer][analyzer]:
 
 ```powershell
 . { iwr -useb https://boxstarter.org/bootstrapper.ps1 } | iex; get-boxstarter -Force
+Install-PackageProvider -Name NuGet -Force
 Install-Module -Name PSScriptAnalyzer -Force
 ```
 
