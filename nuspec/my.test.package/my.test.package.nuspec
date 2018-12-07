@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>my.bad.package</id>
+    <id>my.test.package</id>
     <version>1.0.0</version>
     <authors>Florian Winkelbauer</authors>
     <owners>Florian Winkelbauer</owners>
-    <description>A package which does not install</description>
-    <tags>bad</tags>
+    <description>A package to showcase the my.flow.extension package</description>
+    <tags>test</tags>
     <dependencies>
-      <dependency id="my.exec.extension" />
+      <dependency id="my.flow.extension" />
     </dependencies>
   </metadata>
 </package>
