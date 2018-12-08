@@ -1,8 +1,8 @@
-$ErrorActionPreference = 'Stop'
+properties {
+    $artifactsDir = '.\artifacts'
+}
 
-$artifactsDir = '.\artifacts'
-
-function Invoke-Linter {
+task Invoke-Linter {
     $files = Get-ChildItem -Path '.\nuspec', '.\scripts' -Include '*.ps1', '*.psm1' -Recurse
     $foundIssues = $false
 
@@ -22,7 +22,7 @@ function Invoke-Linter {
     }
 }
 
-function Clear-Artifacts {
+task Clear-Artifacts {
     if (Test-Path $artifactsDir) {
         Get-ChildItem -Path $artifactsDir -Recurse | Remove-Item -Force -Recurse
     } else {
@@ -30,28 +30,17 @@ function Clear-Artifacts {
     }
 }
 
-function Copy-Boxstarter {
+task Build-Artifacts -depends Invoke-Linter, Clear-Artifacts {
     Import-Module Boxstarter.Chocolatey
     Copy-Item -Path $Boxstarter.BaseDir -Destination $artifactsDir -Recurse -Exclude '*.nupkg'
-}
 
-function Build-Packages {
     foreach ($nuspec in Get-ChildItem -Path '.\nuspec\**\*.nuspec') {
         choco pack $nuspec --output-directory "$artifactsDir\Boxstarter\BuildPackages"
     }
-}
 
-function Copy-InstallScripts {
     Copy-Item -Path '.\scripts\*' -Destination $artifactsDir
-}
 
-function Compress-Artifacts {
     Compress-Archive -Path "$artifactsDir\*" -DestinationPath "$artifactsDir\box.zip"
 }
 
-Invoke-Linter
-Clear-Artifacts
-Copy-Boxstarter
-Build-Packages
-Copy-InstallScripts
-Compress-Artifacts
+task Default -depends Build-Artifacts
