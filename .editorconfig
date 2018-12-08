@@ -3,12 +3,12 @@ root = true
 [*]
 indent_style = space
 
-[*.{nuspec,ps1,md,bat}]
+[*.{bat,ps1,psm1,md}]
 charset = utf-8
 end_of_line = crlf
 insert_final_newline = true
 
-[*.{ps1,bat}]
+[*.{bat,ps1,psm1}]
 indent_size = 4
 
 [*.nuspec]
