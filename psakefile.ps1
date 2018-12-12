@@ -32,7 +32,7 @@ task Clear-Artifacts {
 
 task Build-Artifacts -depends Invoke-Linter, Clear-Artifacts {
     Import-Module Boxstarter.Chocolatey
-    Copy-Item -Path $Boxstarter.BaseDir -Destination $artifactsDir -Recurse -Exclude '*.nupkg'
+    Copy-Item -Path $Boxstarter.BaseDir -Destination $artifactsDir -Recurse -Exclude '*.nupkg', '*.log'
 
     foreach ($nuspec in Get-ChildItem -Path '.\nuspec\**\*.nuspec') {
         choco pack $nuspec --output-directory "$artifactsDir\Boxstarter\BuildPackages"
