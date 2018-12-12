@@ -3,12 +3,15 @@
 function exec {
     param(
         [Parameter(Mandatory = $true)]
-        [scriptblock]$cmd
+        [scriptblock]$cmd,
+        [int[]]$validExitCodes
     )
 
     $global:lastexitcode = 0
+
     & $cmd
-    if ($global:lastexitcode -ne 0) {
+
+    if (-not ($global:lastexitcode -in $validExitCodes)) {
         throw "Exit code of command was '$lastexitcode'"
     }
 }
