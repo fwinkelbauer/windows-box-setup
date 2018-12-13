@@ -14,8 +14,8 @@ function once {
         return
     }
 
-    & $cmd
-
     Write-Output "Creating checkpoint file for script block '$name'"
     New-Item -Path $checkpoint -Force
+
+    & $cmd
 }
