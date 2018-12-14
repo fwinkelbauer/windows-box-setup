@@ -1,5 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
+choco install chocolatey -y --no-progress
+
 choco install git -y --no-progress
 choco install visualstudio2017community --package-parameters '--locale en-US' -y --no-progress
 choco install visualstudio2017-workload-manageddesktop -y --no-progress
