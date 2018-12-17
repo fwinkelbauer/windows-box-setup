@@ -4,7 +4,7 @@ function exec {
     param(
         [Parameter(Mandatory = $true)]
         [scriptblock]$cmd,
-        [int[]]$validExitCodes
+        [int[]]$validExitCodes = @(0, 1641, 3010)
     )
 
     $global:lastexitcode = 0
