@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>my.test.package</id>
+    <id>my.box.test</id>
     <version>1.0.0</version>
     <authors>Florian Winkelbauer</authors>
     <owners>Florian Winkelbauer</owners>
