@@ -11,6 +11,7 @@ try {
     exec {
         7z some-invalid-argument
     }
-} catch {
+}
+catch {
     Write-Warning 'The exec statement failed. This is expected.'
 }

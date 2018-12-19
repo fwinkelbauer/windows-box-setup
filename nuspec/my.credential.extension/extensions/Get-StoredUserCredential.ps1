@@ -15,7 +15,8 @@ function Get-StoredUserCredential {
         $cred | Export-CliXml -Path $credFile
 
         return $cred
-    } catch {
+    }
+    catch {
         throw "Invalid password for user '$currentUser'"
     }
 }

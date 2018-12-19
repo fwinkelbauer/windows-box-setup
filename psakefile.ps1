@@ -3,7 +3,7 @@ properties {
 }
 
 task Invoke-Linter {
-    $files = Get-ChildItem -Path '.\nuspec', '.\scripts' -Include '*.ps1', '*.psm1' -Recurse
+    $files = Get-ChildItem -Path '.\psakefile.ps1', '.\nuspec', '.\scripts' -Include '*.ps1', '*.psm1' -Recurse
     $foundIssues = $false
 
     foreach ($file in $files) {
@@ -25,7 +25,8 @@ task Invoke-Linter {
 task Clear-Artifacts {
     if (Test-Path $artifactsDir) {
         Get-ChildItem -Path $artifactsDir -Recurse | Remove-Item -Force -Recurse
-    } else {
+    }
+    else {
         New-Item -ItemType Directory -Path $artifactsDir
     }
 }
@@ -41,6 +42,19 @@ task Build-Artifacts -depends Invoke-Linter, Clear-Artifacts {
     Copy-Item -Path '.\scripts\*' -Destination $artifactsDir
 
     Compress-Archive -Path "$artifactsDir\*" -DestinationPath "$artifactsDir\box.zip"
+}
+
+task Invoke-Prettifier {
+    $files = Get-ChildItem -Path '.\psakefile.ps1', '.\nuspec', '.\scripts' -Include '*.ps1', '*.psm1' -Recurse
+
+    foreach ($file in $files) {
+        $content = Get-Content $file | Out-String
+        $prettyContent = Invoke-Formatter $content
+
+        if (-not ($content -eq $prettyContent)) {
+            $prettyContent | Out-File -FilePath $file -Encoding utf8 -NoNewline
+        }
+    }
 }
 
 task Default -depends Build-Artifacts

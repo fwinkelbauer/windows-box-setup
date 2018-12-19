@@ -19,6 +19,8 @@ choco install psake -y
 
 The `artifacts\box.zip` file can be built by running `psake`.
 
+Run `psake Invoke-Prettifier` to invoke the PowerShell auto-formatter.
+
 ## Bootstrap a Computer
 
 The packages `my.box.csharp` and `my.box.explorer` contain example instructions
