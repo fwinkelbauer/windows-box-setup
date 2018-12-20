@@ -15,7 +15,7 @@ function once {
     }
 
     Write-Output "Creating checkpoint file for script block '$name'"
-    New-Item -Path $checkpoint -Force
+    New-Item -Path $checkpoint -Force | Out-Null
 
     & $cmd
 }
