@@ -1,6 +1,4 @@
-properties {
-    $artifactsDir = '.\artifacts'
-}
+$artifactsDir = '.\artifacts'
 
 task Invoke-Linter {
     $files = Get-ChildItem -Path '.\psakefile.ps1', '.\nuspec', '.\scripts' -Include '*.ps1', '*.psm1' -Recurse
